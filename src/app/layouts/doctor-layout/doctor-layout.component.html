@@ -1,0 +1,18 @@
+<div *ngFor="let doc of doctor">
+  <h2>معلومات الطبيب:</h2>
+  <p>اسم الطبيب: {{ doc.doctor.username }}</p>
+  <p>التخصص: {{ doc.doctor_specialist }}</p>
+  <p>رقم الهاتف: {{ doc.doctor_mobile }}</p>
+  <p>البريد الإلكتروني: {{ doc.doctor_email }}</p>
+  <p>العنوان: {{ doc.doctor_address }}</p>
+
+  <h3>المواعيد:</h3>
+  <ul>
+    <li *ngFor="let appointment of doc.appointments">
+      <p>{{appointment.nurses.nurseName}}</p>
+      <p>{{appointment.patient.patientName}}</p>
+    </li>
+  </ul>
+</div>
+
+

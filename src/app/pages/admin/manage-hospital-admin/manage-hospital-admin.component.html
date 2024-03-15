@@ -1,0 +1,82 @@
+<!-- index.html -->
+<div class="main-container">
+  <div class="container">
+    <div class="create-hospital">
+      <h2>Create Hospital</h2>
+      <form id="createForm" (ngSubmit)="createHospital()">
+        <div class="form-group">
+          <label for="name-hospital">Name Hospital:</label>
+          <input type="text" id="name-hospital" name="name-hospital" required [(ngModel)]="hospital_name">
+        </div>
+
+        <div class="form-group">
+          <label for="hospital_place">Place Hospital:</label>
+          <input type="text" id="hospital_place" name="hospital_place" required [(ngModel)]="hospital_place">
+        </div>
+
+        <div class="form-group">
+          <label for="hospital_type">Type Hospital:</label>
+          <input type="text" id="hospital_type" name="hospital_type" required [(ngModel)]="hospital_type">
+        </div>
+
+        <div class="form-group">
+          <label for="hospital_description">Description Hospital:</label>
+          <input type="text" id="hospital_description" name="hospital_description" required [(ngModel)]="hospital_description">
+        </div>
+
+        <div class="form-group">
+          <label for="hospital_address">Address Hospital:</label>
+          <input type="text" id="hospital_address" name="hospital_address" required [(ngModel)]="hospital_address">
+        </div>
+
+        <button type="submit" >Create Hospital</button>
+      </form>
+    </div>
+
+
+  <!-- Rest of your existing code -->
+
+</div>
+
+<div class="container">
+  <div class="search-bar">
+    <input type="text" placeholder="Search...">
+    <button>Search</button>
+  </div>
+  <table>
+    <thead>
+    <tr>
+      <th>Name Hospital</th>
+      <th>Place Hospital</th>
+      <th>Type Hospital</th>
+      <th>Description Hospital </th>
+      <th>Address Hospital</th>
+      <th>Edite Hospital</th>
+      <th>Delete Hospital</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let hospital of hospital.slice()">
+      <td>{{hospital.hospital_name}}</td>
+      <td>{{ hospital.hospital_place }}</td>
+      <td>{{ hospital.hospital_type }}</td>
+      <td> {{ hospital.hospital_description }}</td>
+      <td> {{ hospital.hospital_address }}</td>
+
+      <td><button class="edit-btn">Edit</button></td>
+      <td><button class="delete-btn">Delete</button></td>
+
+    </tr>
+
+    <!-- More table rows here -->
+    </tbody>
+  </table>
+  <div class="pagination">
+    <a href="#" class="active">1</a>
+    <a href="#">2</a>
+    <a href="#">3</a>
+    <!-- Add more pagination links here -->
+  </div>
+</div>
+</div>
+

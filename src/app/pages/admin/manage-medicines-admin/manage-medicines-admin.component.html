@@ -1,0 +1,97 @@
+<!-- index.html -->
+<div class="main-container">
+  <div class="container">
+    <div class="create-hospital">
+      <h2>Create Medicines</h2>
+      <form id="createForm" (ngSubmit)="createMedicines()">
+        <div class="form-group">
+          <label for="medicine_name">Name Medicines:</label>
+          <input type="text" id="medicine_name" name="medicine_name" required [(ngModel)]="medicine_name">
+        </div>
+
+        <div class="form-group">
+          <label for="medicine_company">Company Medicines:</label>
+          <input type="text" id="medicine_company" name="medicine_company" required [(ngModel)]="medicine_company">
+        </div>
+
+        <div class="form-group">
+          <label for="medicine_composition">Composition Medicines:</label>
+          <input type="text" id="medicine_composition" name="medicine_composition" required [(ngModel)]="medicine_composition">
+        </div>
+
+        <div class="form-group">
+          <label for="medicine_cost">Cost Medicines:</label>
+          <input type="text" id="medicine_cost" name="medicine_cost" required [(ngModel)]="medicine_cost">
+        </div>
+
+        <div class="form-group">
+          <label for="medicine_type">Type Medicines:</label>
+          <input type="text" id="medicine_type" name="medicine_type" required [(ngModel)]="medicine_type">
+        </div>
+
+        <div class="form-group">
+          <label for="medicine_dose">Dose Medicines:</label>
+          <input type="text" id="medicine_dose" name="medicine_dose" required [(ngModel)]="medicine_dose">
+        </div>
+
+        <div class="form-group">
+          <label for="medicine_description">Description Medicines:</label>
+          <input type="text" id="medicine_description" name="medicine_description" required [(ngModel)]="medicine_description">
+        </div>
+
+        <button type="submit" >Create Hospital</button>
+      </form>
+    </div>
+
+
+    <!-- Rest of your existing code -->
+
+  </div>
+
+  <div class="container">
+    <div class="search-bar">
+      <input type="text" placeholder="Search...">
+      <button>Search</button>
+    </div>
+    <table>
+      <thead>
+      <tr>
+        <th>Name Medicines</th>
+        <th>Company Medicines</th>
+        <th>Composition Medicines</th>
+        <th>Cost Medicines </th>
+        <th>Type Medicines</th>
+        <th>Dose Medicines</th>
+        <th>Description Medicines</th>
+
+        <th>Edite Hospital</th>
+        <th>Delete Hospital</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let medicines of medicines.slice()">
+        <td>{{medicines.medicine_name}}</td>
+        <td>{{ medicines.medicine_company }}</td>
+        <td>{{ medicines.medicine_composition }}</td>
+        <td> {{ medicines.medicine_cost }}</td>
+        <td> {{ medicines.medicine_type }}</td>
+        <td> {{ medicines.medicine_dose }}</td>
+        <td> {{ medicines.medicine_description }}</td>
+
+        <td><button class="edit-btn">Edit</button></td>
+        <td><button class="delete-btn">Delete</button></td>
+
+      </tr>
+
+      <!-- More table rows here -->
+      </tbody>
+    </table>
+    <div class="pagination">
+      <a href="#" class="active">1</a>
+      <a href="#">2</a>
+      <a href="#">3</a>
+      <!-- Add more pagination links here -->
+    </div>
+  </div>
+</div>
+

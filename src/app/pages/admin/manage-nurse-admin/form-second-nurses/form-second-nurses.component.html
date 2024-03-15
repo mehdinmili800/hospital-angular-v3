@@ -1,0 +1,27 @@
+<div class="content">
+  <div class="form-container">
+    <!-- combined-form.component.html -->
+    <form (ngSubmit)="createNurse()">
+
+      <label for="username">User Name:</label>
+      <input type="text" id="username" name="username" required [(ngModel)]="username" disabled>
+
+      <label for="nurseName">Nurses Name:</label>
+      <input type="text" id="nurseName" name="nurseName" required [(ngModel)]="nurseName">
+
+      <label for="nurse_duty_hour">Nurses Duty Hour:</label>
+      <input type="text" id="nurse_duty_hour" name="nurse_duty_hour" required [(ngModel)]="nurse_duty_hour">
+
+      <label for="nurse_mobile">Nurses Mobile:</label>
+      <input type="text" id="nurse_mobile" name="nurse_mobile" required [(ngModel)]="nurse_mobile">
+
+      <label for="nurse_email">Nurses Email:</label>
+      <input type="text" id="nurse_email" name="nurse_email" required [(ngModel)]="nurse_email">
+
+      <label for="nurse_address">Nurses Address:</label>
+      <input type="text" id="nurse_address" name="nurse_address" required [(ngModel)]="nurse_address">
+      <button type="submit">إرسال</button>
+
+    </form>
+  </div>
+</div>
