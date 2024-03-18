@@ -1,0 +1,53 @@
+<!-- index.html -->
+<div class="main-container">
+  <div class="container">
+    <div class="search-bar">
+      <input type="text" placeholder="Search...">
+      <button>Search</button>
+    </div>
+    <table>
+      <thead>
+      <tr>
+        <th>Doctor Name</th>
+        <th>Patient Name</th>
+        <th>Medicine Name</th>
+        <th>Treatment Name</th>
+        <th>Treatment Number</th>
+        <th>Treatment Type</th>
+        <th>Treatment Date</th>
+        <th>Treatment Description</th>
+
+        <th>Edite Hospital</th>
+        <th>Delete Hospital</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let treatment of treatment.slice()">
+
+        <td>{{treatment.doctor.doctorName}}</td>
+        <td>{{treatment.patient.patientName}}</td>
+        <td>{{treatment.medicines.medicineName}}</td>
+        <td>{{treatment.treatmentName}}</td>
+        <td>{{treatment.treatmentNumber}}</td>
+        <td>{{ treatment.treatmentType }}</td>
+        <td>{{ treatment.treatmentDate}}</td>
+        <td> {{ treatment.treatmentDescription }}</td>
+
+        <td><button class="edit-btn">Edit</button></td>
+        <td><button class="delete-btn">Delete</button></td>
+
+      </tr>
+
+      <!-- More table rows here -->
+      </tbody>
+    </table>
+    <div class="pagination">
+      <a href="#" class="active">1</a>
+      <a href="#">2</a>
+      <a href="#">3</a>
+      <!-- Add more pagination links here -->
+    </div>
+  </div>
+</div>
+
+

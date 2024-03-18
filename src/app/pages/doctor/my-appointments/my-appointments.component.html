@@ -1,0 +1,41 @@
+<div class="main-container">
+
+  <div class="container">
+    <div class="search-bar">
+      <input type="text" placeholder="Search...">
+      <button>Search</button>
+    </div>
+
+
+  <table>
+    <div *ngFor="let doc of doctor">
+    <thead>
+    <tr>
+      <th>Appointment Name Patient</th>
+      <th>Appointment Name Nurses</th>
+      <th>Appointment Number</th>
+      <th>Appointment Type</th>
+      <th>Appointment Date</th>
+      <th>Appointment Description</th>
+    </tr>
+    </thead>
+    <tbody>
+
+
+      <tr *ngFor="let appointment of doc.appointments">
+        <td>{{appointment.patient.patientName}}</td>
+        <td>{{appointment.nurses.nurseName}}</td>
+        <td>{{appointment.appointment_number}}</td>
+        <td>{{appointment.appointment_type}}</td>
+        <td>{{appointment.appointment_date}}</td>
+        <td>{{appointment.appointment_description}}</td>
+      </tr>
+
+
+    </tbody>
+
+    </div>
+  </table>
+
+  </div>
+</div>

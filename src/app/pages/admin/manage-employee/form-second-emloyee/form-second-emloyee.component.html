@@ -1,0 +1,23 @@
+<div class="content">
+  <div class="form-container">
+    <!-- combined-form.component.html -->
+    <form (ngSubmit)="createPatient()">
+
+      <label for="username">User Name:</label>
+      <input type="text" id="username" name="username" required [(ngModel)]="username" disabled>
+
+      <label for="employeeName">Employee Name:</label>
+      <input type="text" id="employeeName" name="employeeName" required [(ngModel)]="employeeName">
+
+      <label for="email">Employee email:</label>
+      <input type="text" id="email" name="email" required [(ngModel)]="email">
+
+      <label for="phone">Employee Mobile:</label>
+      <input type="text" id="phone" name="phone" required [(ngModel)]="phone">
+
+      <button type="submit">إرسال</button>
+
+    </form>
+  </div>
+</div>
+

@@ -1,0 +1,114 @@
+<!-- index.html -->
+<div class="main-container">
+  <div class="container">
+    <div class="create-hospital">
+      <h2>Create Appointment</h2>
+      <form id="createForm" (ngSubmit)="createAppointment()">
+        <div class="form-group">
+          <label for="doctorName">Name Doctor:</label>
+          <!-- عرض قائمة الأطباء -->
+          <select id="doctorName" name="doctorName" required [(ngModel)]="doctorName">
+            <option *ngFor="let doctor of doctors" [value]="doctor.doctorName">{{ doctor.doctorName }}</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="nursesName">Name Nurses</label>
+          <select id="nursesName" name="nursesName" required [(ngModel)]="nursesName">
+            <option *ngFor="let nurses of nurses" [value]="nurses.nurseName">{{nurses.nurseName}}</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="patientName">Name Patient</label>
+          <select id="patientName" name="patientName" required [(ngModel)]="patientName">
+            <option *ngFor="let patient of patient" [value]="patient.patientName">{{patient.patientName}}</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="hospitalName">Name Hospital</label>
+          <select id="hospitalName" name="hospitalName" required [(ngModel)]="hospitalName">
+            <option *ngFor="let hospital of hospital" [value]="hospital.hospitalName">{{hospital.hospitalName}}</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="appointmentNumber">Appointment Number:</label>
+          <input type="text" id="appointmentNumber" name="appointmentNumber" required [(ngModel)]="appointmentNumber">
+        </div>
+
+        <div class="form-group">
+          <label for="appointmentType">Appointment Type:</label>
+          <input type="text" id="appointmentType" name="appointmentType" required [(ngModel)]="appointmentType">
+        </div>
+
+        <div class="form-group">
+          <label for="appointmentDate">Appointment date:</label>
+          <input type="text" id="appointmentDate" name="appointmentDate" required [(ngModel)]="appointmentDate">
+        </div>
+
+        <div class="form-group">
+          <label for="appointmentDescription">Appointment Description:</label>
+          <input type="text" id="appointmentDescription" name="appointmentDescription" required [(ngModel)]="appointmentDescription">
+        </div>
+
+
+        <button type="submit" >Create Appointment</button>
+      </form>
+    </div>
+
+
+    <!-- Rest of your existing code -->
+
+  </div>
+
+  <div class="container">
+    <div class="search-bar">
+      <input type="text" placeholder="Search...">
+      <button>Search</button>
+    </div>
+    <table>
+      <thead>
+      <tr>
+        <th>Number Appointment</th>
+        <th>Name Doctor</th>
+        <th>Name Nurses</th>
+        <th>Name Patient</th>
+        <th>Name Hospital</th>
+        <th>Type Appointment</th>
+        <th>Date Appointment</th>
+        <th>Description Appointment </th>
+        <th>Edite Hospital</th>
+        <th>Delete Hospital</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let appointment of appointment.slice()">
+
+        <td>{{appointment.appointment_number}}</td>
+        <td>{{appointment.doctor.doctorName}}</td>
+        <td>{{appointment.nurses.nurseName}}</td>
+        <td>{{appointment.patient.patientName}}</td>
+        <td>{{appointment.hospital.hospitalName}}</td>
+        <td>{{ appointment.appointment_type }}</td>
+        <td>{{ appointment.appointment_date }}</td>
+        <td> {{ appointment.appointment_description }}</td>
+
+        <td><button class="edit-btn">Edit</button></td>
+        <td><button class="delete-btn">Delete</button></td>
+
+      </tr>
+
+      <!-- More table rows here -->
+      </tbody>
+    </table>
+    <div class="pagination">
+      <a href="#" class="active">1</a>
+      <a href="#">2</a>
+      <a href="#">3</a>
+      <!-- Add more pagination links here -->
+    </div>
+  </div>
+</div>
+

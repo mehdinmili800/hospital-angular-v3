@@ -1,0 +1,61 @@
+<div class="content">
+
+  <div class="form-container">
+    <!-- combined-form.component.html -->
+    <form (ngSubmit)="createUser()">
+
+      <label for="username">User Name:</label>
+      <input type="text" id="username" name="username" required [(ngModel)]="username">
+
+      <label for="username">Password</label>
+      <input type="password" id="password" name="password" required [(ngModel)]="password">
+
+      <label for="newRole">Role :</label>
+      <select id="newRole" name="newRole" required [(ngModel)]="role">
+        <option value="ROLE_EMPLOYEE">Employee</option>
+      </select>
+
+      <button type="submit">إرسال</button>
+
+    </form>
+  </div>
+
+  <div class="container1">
+    <div class="search-bar">
+      <input type="text" placeholder="Search...">
+      <button>Search</button>
+    </div>
+    <table>
+      <thead>
+      <tr>
+        <th>User Name Patient</th>
+        <th>Name Employee</th>
+        <th>Email Employee</th>
+        <th>Mobile Employee </th>
+        <th>Edite Doctor</th>
+        <th>Delete Doctor</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let employee of employee.slice()">
+        <td>{{employee.employee.username}}</td>
+        <td>{{ employee.employeeName }}</td>
+        <td>{{ employee.email }}</td>
+        <td> {{ employee.phone }}</td>
+
+        <td><button class="edit-btn">Edit</button></td>
+        <td><button class="delete-btn">Delete</button></td>
+
+      </tr>
+
+      <!-- More table rows here -->
+      </tbody>
+    </table>
+    <div class="pagination">
+      <a href="#" class="active">1</a>
+      <a href="#">2</a>
+      <a href="#">3</a>
+      <!-- Add more pagination links here -->
+    </div>
+  </div>
+</div>
