@@ -10,12 +10,12 @@ export class HospitalService {
   private apiUrl = 'http://localhost:8080/api'
   constructor(private http:HttpClient) { }
 
-  createHospital(hospital_name:string | undefined,
+  createHospital(hospitalName:string | undefined,
                  hospital_place:string | undefined,
                  hospital_type:string | undefined,
                  hospital_description:string | undefined,
                  hospital_address:string | undefined) : Observable<any>{
-    const data = {hospital_name,hospital_place,hospital_type,
+    const data = {hospitalName,hospital_place,hospital_type,
       hospital_description,hospital_address}
     return this.http.post<any>(`${this.apiUrl}/hospital/create` ,data);
   }

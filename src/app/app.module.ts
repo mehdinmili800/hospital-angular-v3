@@ -12,6 +12,13 @@ import {ComponentsAdminModule} from "./components/components-admin/components-ad
 import {AdminLayoutModule} from "./layouts/admin-layout/admin-layout.module";
 import {TokenInterceptor} from "./token/TokenInterceptor";
 import { DoctorLayoutComponent } from './layouts/doctor-layout/doctor-layout.component';
+import {ComponentsDoctorModule} from "./components/components-doctor/components-doctor.module";
+import {EmployeeLayoutComponent} from "./layouts/employee-layout/employee-layout.component";
+
+import {ComponentsEmployeeModule} from "./components/components-employee/components-employee.module";
+import {EmployeeLayoutModule} from "./layouts/employee-layout/employee-layout.module";
+import { ManageTreatmentAdminComponent } from './pages/admin/manage-treatment-admin/manage-treatment-admin.component';
+
 
 @NgModule({
   declarations: [
@@ -19,6 +26,7 @@ import { DoctorLayoutComponent } from './layouts/doctor-layout/doctor-layout.com
     AdminLayoutComponent,
     AuthComponent,
     DoctorLayoutComponent,
+    EmployeeLayoutComponent,
 
   ],
   imports: [
@@ -28,7 +36,10 @@ import { DoctorLayoutComponent } from './layouts/doctor-layout/doctor-layout.com
     HttpClientModule,
     FormsModule,
     ComponentsAdminModule,
-    AdminLayoutModule
+    AdminLayoutModule,
+    ComponentsDoctorModule,
+    EmployeeLayoutModule,
+    ComponentsEmployeeModule
   ],
   providers: [
     {

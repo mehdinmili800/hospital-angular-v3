@@ -18,8 +18,8 @@ export class ManagePatientAdminComponent implements OnInit{
   public password: string | undefined;
   public role: string | undefined;
 
-  constructor(private userService: UserService,
-              private patientService:PatientService,
+  constructor(private patientService:PatientService,
+              private userService: UserService,
               private router:Router) {
   }
 
@@ -34,16 +34,19 @@ export class ManagePatientAdminComponent implements OnInit{
     )
   }
 
-  createUser(): void{
-    this.userService.createUser(this.username,this.password,this.role).subscribe(
-      () => {
-        if (this.role === 'ROLE_PATIENT'){
-          this.router.navigate(['/admin-layout/form-second-patient'],
-            {queryParams:{username: this.username}});
+  onDeleteUser(userId: number) {
+    if (confirm('Are you sure you want to delete this user?')) {
+      this.userService.deleteUser(userId).subscribe(
+        () => {
+          // Handle success, such as refreshing user list or removing the deleted user
+        },
+        (error) => {
+          console.error('Error deleting user:', error);
         }
-      }
-    )
+      );
+    }
   }
+
 
 
 }

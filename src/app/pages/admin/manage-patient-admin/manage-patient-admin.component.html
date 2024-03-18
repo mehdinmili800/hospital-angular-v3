@@ -1,26 +1,5 @@
-<div class="content">
-
-  <div class="form-container">
-  <!-- combined-form.component.html -->
-  <form (ngSubmit)="createUser()">
-
-        <label for="username">User Name:</label>
-        <input type="text" id="username" name="username" required [(ngModel)]="username">
-
-      <label for="username">Password</label>
-      <input type="password" id="password" name="password" required [(ngModel)]="password">
-
-      <label for="newRole">Role :</label>
-      <select id="newRole" name="newRole" required [(ngModel)]="role">
-        <option value="ROLE_PATIENT">Patient</option>
-      </select>
-
-    <button type="submit">إرسال</button>
-
-  </form>
-  </div>
-
-  <div class="container1">
+<div class="main-container">
+  <div class="container">
     <div class="search-bar">
       <input type="text" placeholder="Search...">
       <button>Search</button>
@@ -33,7 +12,7 @@
         <th>Mobile Patient</th>
         <th>Email Patient</th>
         <th>Address Patient </th>
-        <th>Edite Hospital</th>
+<!--        <th>Edite Hospital</th>-->
         <th>Delete Hospital</th>
       </tr>
       </thead>
@@ -45,8 +24,8 @@
         <td>{{ patient.patient_email }}</td>
         <td> {{ patient.patient_address }}</td>
 
-        <td><button class="edit-btn">Edit</button></td>
-        <td><button class="delete-btn">Delete</button></td>
+<!--        <td><button class="edit-btn">Edit</button></td>-->
+        <td><button class="delete-btn" (click)="onDeleteUser(patient.patient.id)">Delete</button></td>
 
       </tr>
 

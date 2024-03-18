@@ -27,8 +27,8 @@ export class AuthComponent {
           this.router.navigate(['/admin-layout/manage-hospital-admin']); // Replace 'admin' with your admin route
         } else if (role === 'ROLE_DOCTOR') {
           this.router.navigate(['/doctor-layout']); // Replace 'teacher' with your teacher route
-        } else if (role === 'ROLE_STUDENT') {
-          this.router.navigate(['/dashboard-student']); // Replace 'student' with your student route
+        } else if (role === 'ROLE_EMPLOYEE') {
+          this.router.navigate(['/employee-layout']); // Replace 'student' with your student route
         }
 
       },

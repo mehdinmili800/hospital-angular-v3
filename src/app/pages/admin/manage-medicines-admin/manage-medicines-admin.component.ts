@@ -12,7 +12,7 @@ export class ManageMedicinesAdminComponent {
 
   medicines:Medicines[] = [];
 
-  public medicine_name:string | undefined;
+  public medicineName:string | undefined;
   public medicine_company:string | undefined;
   public medicine_composition:string | undefined;
   public medicine_cost:string | undefined;
@@ -36,7 +36,7 @@ export class ManageMedicinesAdminComponent {
   }
 
   createMedicines():void {
-    this.medicineService.createMedicine(this.medicine_name,this.medicine_company,this.medicine_composition,
+    this.medicineService.createMedicine(this.medicineName,this.medicine_company,this.medicine_composition,
       this.medicine_cost,this.medicine_type,this.medicine_dose,this.medicine_description).subscribe(
       {}
     );
@@ -49,7 +49,7 @@ export class ManageMedicinesAdminComponent {
 
 export interface Medicines{
   id:number,
-  medicine_name:string,
+  medicineName:string,
   medicine_company:string,
   medicine_composition:string,
   medicine_cost:string,

@@ -11,7 +11,7 @@ export class ManageHospitalAdminComponent implements OnInit{
 
   hospital:Hospital[] = [];
 
-  public hospital_name:string | undefined;
+  public hospitalName:string | undefined;
   public hospital_place:string | undefined;
   public hospital_type:string | undefined;
   public hospital_description:string | undefined;
@@ -33,7 +33,7 @@ export class ManageHospitalAdminComponent implements OnInit{
   }
 
   createHospital():void {
-    this.hospitalService.createHospital(this.hospital_name,this.hospital_place,this.hospital_type,
+    this.hospitalService.createHospital(this.hospitalName,this.hospital_place,this.hospital_type,
       this.hospital_description,this.hospital_address).subscribe(
       {}
     );
@@ -46,7 +46,7 @@ export class ManageHospitalAdminComponent implements OnInit{
 
 export interface Hospital{
   id:number,
-  hospital_name:string,
+  hospitalName:string,
   hospital_place:string,
   hospital_type:string,
   hospital_description:string,

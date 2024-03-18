@@ -35,4 +35,8 @@ export class TokenStorageService {
   getUserId(): string | null {
     return localStorage.getItem(USER_ID_KEY);
   }
+
+  removeUserId(): void {
+    localStorage.removeItem(USER_ID_KEY);
+  }
 }

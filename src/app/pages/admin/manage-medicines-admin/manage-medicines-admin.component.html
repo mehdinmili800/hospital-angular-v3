@@ -5,8 +5,8 @@
       <h2>Create Medicines</h2>
       <form id="createForm" (ngSubmit)="createMedicines()">
         <div class="form-group">
-          <label for="medicine_name">Name Medicines:</label>
-          <input type="text" id="medicine_name" name="medicine_name" required [(ngModel)]="medicine_name">
+          <label for="medicineName">Name Medicines:</label>
+          <input type="text" id="medicineName" name="medicineName" required [(ngModel)]="medicineName">
         </div>
 
         <div class="form-group">
@@ -70,7 +70,7 @@
       </thead>
       <tbody>
       <tr *ngFor="let medicines of medicines.slice()">
-        <td>{{medicines.medicine_name}}</td>
+        <td>{{medicines.medicineName}}</td>
         <td>{{ medicines.medicine_company }}</td>
         <td>{{ medicines.medicine_composition }}</td>
         <td> {{ medicines.medicine_cost }}</td>

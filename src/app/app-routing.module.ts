@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import {AdminLayoutComponent} from "./layouts/admin-layout/admin-layout.component";
 import {AuthComponent} from "./pages/auth/auth.component";
 import {DoctorLayoutComponent} from "./layouts/doctor-layout/doctor-layout.component";
+import {EmployeeLayoutComponent} from "./layouts/employee-layout/employee-layout.component";
 
 const routes: Routes = [
 
@@ -22,9 +23,25 @@ const routes: Routes = [
       loadChildren: () => import('./layouts/admin-layout/admin-layout.module').then(m => m.AdminLayoutModule)
     }]
   },
+
   {
-    path:'doctor-layout',component:DoctorLayoutComponent
-  }
+    path:'doctor-layout',
+    component:DoctorLayoutComponent,
+    children:[{
+      path:'',
+      loadChildren: () => import('./layouts/doctor-layout/doctor-layout.module').then(m => m.DoctorLayoutModule)
+    }]
+  },
+
+  {
+    path:'employee-layout',
+    component:EmployeeLayoutComponent,
+    children:[{
+      path:'',
+      loadChildren: () => import('./layouts/employee-layout/employee-layout.module').then(m => m.EmployeeLayoutModule)
+    }]
+  },
+
 
 ];
 

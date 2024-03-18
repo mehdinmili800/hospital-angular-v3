@@ -13,12 +13,13 @@ export class AppointmentService {
   createAppointment(doctorName:string | undefined,
                     nurseName:string | undefined,
                     patientName:string | undefined,
+                    hospitalName:string | undefined,
                     appointmentNumber:string | undefined,
                     appointmentType:string | undefined,
                     appointmentDate:string | undefined,
                     appointmentDescription:string | undefined,
                      ) : Observable<any>{
-    const data = {doctorName,nurseName,patientName,
+    const data = {doctorName,nurseName,patientName,hospitalName,
       appointmentNumber,appointmentType,appointmentDate,
       appointmentDescription}
     return this.http.post<any>(`${this.apiUrl}/appointment/create` ,data);

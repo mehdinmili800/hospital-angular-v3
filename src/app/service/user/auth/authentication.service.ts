@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable, tap} from "rxjs";
 import {TokenStorageService} from "../../../token/TokenStorageService";
+import {Router} from "@angular/router";
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ export class AuthenticationService {
 
   constructor(
     private http: HttpClient,
-    private tokenStorageService: TokenStorageService
+    private tokenStorageService: TokenStorageService,
   ) {}
 
   authenticate(username: string | undefined, password: string | undefined): Observable<any> {
@@ -27,9 +28,6 @@ export class AuthenticationService {
   }
 
 
-  logout(): void {
-    // Remove the token from local storage upon logout
-    this.tokenStorageService.removeToken();
-  }
+
 
 }

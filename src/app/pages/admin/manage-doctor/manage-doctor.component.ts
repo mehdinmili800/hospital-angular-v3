@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {UserService} from "../../../service/user/user/user.service";
 import {DoctorService} from "../../../service/user/doctor/doctor.service";
 import {Router} from "@angular/router";
-import {Appointment} from "../manage-appointment-admin/manage-appointment-admin.component";
+import {Appointment} from "../../employee/work-hospital/create-appointment/create-appointment.component";
 
 @Component({
   selector: 'app-manage-doctor',
