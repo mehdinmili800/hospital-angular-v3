@@ -1,0 +1,148 @@
+/* styles.css */
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f8f8f8;
+  margin: 0;
+}
+
+.main-container {
+  display: flex; /* يجعل العناصر الرئيسية للمستند تظهر ك Flex Container */
+  max-width: 1600px; /* يحدد الحد الأقصى للعرض الكلي للشاشة */
+  margin: 20px auto;
+  margin-left: 280px;
+}
+
+.container {
+  flex: 1; /* يعطي النصفين من الشاشة نفس العرض */
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+
+}
+
+.search-bar {
+  margin-bottom: 20px;
+}
+
+input[type="text"] {
+  padding: 10px;
+  margin-right: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+button {
+  padding: 10px 15px;
+  margin-right: 5px;
+  background-color: #4CAF50;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 6px; /* تقليل حجم الخلية */
+  text-align: left;
+  font-size: 14px; /* تقليل حجم الخط */
+  white-space: nowrap; /* منع النص من الانزلاق إلى سطر جديد */
+  overflow: hidden; /* إخفاء النص الزائد */
+  text-overflow: ellipsis; /* إظهار نقاط القطع عند تجاوز النص حجم العنصر */
+  max-width: 150px; /* تحديد عرض محدد للعنصر */
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+.edit-btn {
+  background-color: #3498db;
+}
+
+.delete-btn {
+  background-color: #e74c3c;
+}
+
+
+.create-hospital {
+  display: flex;
+  flex-direction: column; /* يجعل العناصر تظهر في عمود واحد */
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+input[type="text"] {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 100%; /* يمتد الحقل إلى 100% من العرض */
+}
+
+button {
+  padding: 10px 15px;
+  background-color: #4CAF50;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%; /* يمتد الزر إلى 100% من العرض */
+}
+
+
+.pagination-container {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.pagination {
+  display: flex;
+  align-items: center;
+}
+
+.pagination-btn {
+  padding: 8px 15px;
+  border: none;
+  background-color: #4CAF50;
+  color: #fff;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-size: 14px;
+  width: 150px;
+}
+
+.prev-btn {
+  margin-right: 10px;
+}
+
+.next-btn {
+  margin-left: 10px;
+}
+
+.pagination-btn:hover {
+  background-color: #0056b3;
+}
+
+.pagination-info {
+  padding: 8px 15px;
+  font-size: 16px;
+  color: #333;
+}
+

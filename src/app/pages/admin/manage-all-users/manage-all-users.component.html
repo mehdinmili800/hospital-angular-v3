@@ -1,0 +1,41 @@
+<!-- index.html -->
+<div class="main-container">
+  <div class="container">
+    <div class="search-bar">
+      <input type="text" [(ngModel)]="searchTerm" placeholder="Search..." (input)="searchUsers()">
+      <button (click)="searchUsers()">Search</button>
+    </div>
+    <table>
+      <thead>
+      <tr>
+        <th>ID</th>
+        <th>User Name</th>
+        <th>Role</th>
+
+        <th>Delete User</th>
+      </tr>
+      </thead>
+      <tbody>
+      <!-- manage-all-users.component.html -->
+      <tr *ngFor="let user of filteredUsers.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage)">
+        <td>{{ user.id }}</td>
+        <td>{{ user.username }}</td>
+        <td>{{ user.role }}</td>
+        <td><button class="delete-btn" (click)="deleteUser(user.id)">Delete User</button></td>
+      </tr>
+
+
+      <!-- More table rows here -->
+      </tbody>
+    </table>
+    <div class="pagination-container">
+      <div class="pagination">
+        <button class="pagination-btn" (click)="prevPage()" [disabled]="currentPage === 1">Previous</button>
+        <span class="pagination-info">Page {{currentPage}} of {{totalPages}}</span>
+        <button class="pagination-btn" (click)="nextPage()" [disabled]="currentPage === totalPages">Next</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+

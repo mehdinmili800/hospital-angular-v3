@@ -1,0 +1,50 @@
+<!-- index.html -->
+<div class="main-container">
+  <div class="container">
+    <div class="search-bar">
+      <input type="text" [(ngModel)]="searchTerm" placeholder="Search..." (input)="searchTreatment()">
+      <button (click)="searchTreatment()">Search</button>
+    </div>
+    <table>
+      <thead>
+      <tr>
+        <th>Name Treatment</th>
+        <th>Name Doctor</th>
+        <th>Name Medicines</th>
+        <th>Name Nurses</th>
+        <th>Name Patient</th>
+        <th>Number Treatment</th>
+        <th>Type Treatment</th>
+        <th>Date Treatment </th>
+        <th>Description Treatment </th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let treatment of filteredTreatment.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage)">
+
+        <td>{{treatment.treatmentName}}</td>
+        <td>{{treatment.doctor.username}}</td>
+        <td>{{treatment.medicines.medicineName}}</td>
+        <td>{{treatment.nurse.username}}</td>
+        <td>{{treatment.patient.username}}</td>
+        <td>{{ treatment.treatmentNumber }}</td>
+        <td>{{ treatment.treatmentType }}</td>
+        <td> {{ treatment.treatmentDate }}</td>
+        <td> {{ treatment.treatmentDescription }}</td>
+
+
+      </tr>
+
+      <!-- More table rows here -->
+      </tbody>
+    </table>
+    <div class="pagination-container">
+      <div class="pagination">
+        <button class="pagination-btn" (click)="prevPage()" [disabled]="currentPage === 1">Previous</button>
+        <span class="pagination-info">Page {{currentPage}} of {{totalPages}}</span>
+        <button class="pagination-btn" (click)="nextPage()" [disabled]="currentPage === totalPages">Next</button>
+      </div>
+    </div>
+  </div>
+</div>
+
