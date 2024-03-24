@@ -22,42 +22,39 @@
 
   <div class="container1">
     <div class="search-bar">
-      <input type="text" placeholder="Search...">
-      <button>Search</button>
+      <input type="text" [(ngModel)]="searchTerm" placeholder="Search..." (input)="searchPatient()">
+      <button (click)="searchPatient()">Search</button>
     </div>
     <table>
       <thead>
       <tr>
-        <th>User Name Patient</th>
-        <th>Name Patient</th>
-        <th>Mobile Patient</th>
-        <th>Email Patient</th>
-        <th>Address Patient </th>
-        <th>Edite Hospital</th>
-        <th>Delete Hospital</th>
+        <th>ID</th>
+        <th>User Name</th>
+        <th>Role</th>
+
+        <th>Delete User</th>
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let patient of patient.slice()">
-        <td>{{patient.patient.username}}</td>
-        <td>{{ patient.patientName }}</td>
-        <td>{{ patient.patient_mobile }}</td>
-        <td>{{ patient.patient_email }}</td>
-        <td> {{ patient.patient_address }}</td>
+      <tr *ngFor="let patients of filteredUser.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage)">
 
-        <td><button class="edit-btn">Edit</button></td>
-        <td><button class="delete-btn">Delete</button></td>
+        <td>{{patients.id}}</td>
+        <td>{{patients.username}}</td>
+        <td>{{patients.role}}</td>
+
+        <td><button class="delete-btn" (click)="deleteUser(patients.id)">Delete User</button></td>
 
       </tr>
 
       <!-- More table rows here -->
       </tbody>
     </table>
-    <div class="pagination">
-      <a href="#" class="active">1</a>
-      <a href="#">2</a>
-      <a href="#">3</a>
-      <!-- Add more pagination links here -->
+    <div class="pagination-container">
+      <div class="pagination">
+        <button class="pagination-btn" (click)="prevPage()" [disabled]="currentPage === 1">Previous</button>
+        <span class="pagination-info">Page {{currentPage}} of {{totalPages}}</span>
+        <button class="pagination-btn" (click)="nextPage()" [disabled]="currentPage === totalPages">Next</button>
+      </div>
     </div>
   </div>
 </div>

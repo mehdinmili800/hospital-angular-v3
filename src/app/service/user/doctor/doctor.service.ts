@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {catchError, Observable, of, throwError} from "rxjs";
+import {catchError, Observable, of, switchMap, throwError} from "rxjs";
 import {TokenStorageService} from "../../../token/TokenStorageService";
-import {Doctor} from "../../../pages/admin/manage-doctor/manage-doctor.component";
+import {UserService} from "../user/user.service";
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +12,8 @@ export class DoctorService {
   private apiUrl = 'http://localhost:8080/api';
 
   constructor(private http:HttpClient,
-              private tokenStorageService: TokenStorageService) { }
+              private tokenStorageService: TokenStorageService,
+              private userService: UserService,) { }
 
   createDoctor(username:string | undefined,
                doctorName:string | undefined,
@@ -30,9 +31,10 @@ export class DoctorService {
   }
 
 
-  getDoctorInfo(): Observable<any> {
-    const userId = this.tokenStorageService.getUserId(); // Retrieve user ID from local storage
+
+  getDoctorInfo(userId: number): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/doctors/${userId}`);
   }
+
 
 }

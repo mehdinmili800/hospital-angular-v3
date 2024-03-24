@@ -10,21 +10,41 @@ export class TreatmentService {
   private apiUrl = 'http://localhost:8080/api'
   constructor(private http:HttpClient) { }
 
-  createTreatment(doctorName:string | undefined,
-                   patientName:string | undefined,
-                   medicineName:string | undefined,
-                   treatmentName:string | undefined,
+  createTreatment(doctorUsername:string | undefined,
+                  nurseUsername:string | undefined,
+                  patientUsername:string | undefined,
+                  medicinesName:string | undefined,
+                  treatmentName:string | undefined,
                    treatmentNumber:string | undefined,
                    treatmentType:string | undefined,
                    treatmentDate:string | undefined,
                    treatmentDescription:string | undefined,
                    ):Observable<any>{
-    const data = {doctorName,patientName,medicineName,treatmentName,
-    treatmentNumber,treatmentType,treatmentDate,treatmentDescription}
+    const data = {
+      treatment:{
+        treatmentName:treatmentName,
+        treatmentNumber:treatmentNumber,
+        treatmentType:treatmentType,
+        treatmentDate:treatmentDate,
+        treatmentDescription:treatmentDescription,
+      },
+      doctorUsername:doctorUsername,
+      nurseUsername:nurseUsername,
+      patientUsername:patientUsername,
+      medicinesName:medicinesName,
+    }
     return this.http.post<any>(`${this.apiUrl}/treatment/create`,data)
   }
 
   getTreatment():Observable<any>{
     return this.http.get<any>(`${this.apiUrl}/treatment/all`)
+  }
+
+  getTreatmentUserId(userId: number): Observable<any> { // تم تعديل الدالة لتقبل معرف الطبيب
+    return this.http.get<any>(`${this.apiUrl}/treatment/user/${userId}`);
+  }
+
+  deleteTreatment(treatmentId:number): Observable<any>{
+    return this.http.delete<any>(`${this.apiUrl}/treatment/${treatmentId}`);
   }
 }

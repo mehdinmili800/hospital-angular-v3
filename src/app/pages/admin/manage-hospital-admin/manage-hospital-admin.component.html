@@ -34,14 +34,24 @@
     </div>
 
 
+
   <!-- Rest of your existing code -->
+    <div class="tooltip-container" *ngIf="selectedHospital">
+      <div class="tooltip-content">
+        <p><strong>Name:</strong> {{ selectedHospital?.hospitalName }}</p>
+        <p><strong>Place:</strong> {{ selectedHospital?.hospital_place }}</p>
+        <p><strong>Type:</strong> {{ selectedHospital?.hospital_type }}</p>
+        <p><strong>Description:</strong> {{ selectedHospital?.hospital_description }}</p>
+        <p><strong>Address:</strong> {{ selectedHospital?.hospital_address }}</p>
+      </div>
+    </div>
 
 </div>
 
 <div class="container">
   <div class="search-bar">
-    <input type="text" placeholder="Search...">
-    <button>Search</button>
+    <input type="text" [(ngModel)]="searchTerm" placeholder="Search..." (input)="searchHospital()">
+    <button (click)="searchHospital()">Search</button>
   </div>
   <table>
     <thead>
@@ -51,31 +61,30 @@
       <th>Type Hospital</th>
       <th>Description Hospital </th>
       <th>Address Hospital</th>
-      <th>Edite Hospital</th>
       <th>Delete Hospital</th>
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let hospital of hospital.slice()">
-      <td>{{hospital.hospitalName}}</td>
-      <td>{{ hospital.hospital_place }}</td>
-      <td>{{ hospital.hospital_type }}</td>
-      <td> {{ hospital.hospital_description }}</td>
-      <td> {{ hospital.hospital_address }}</td>
+    <tr *ngFor="let hospital of filteredHospital.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage)">
+      <td (click)="selectHospital(hospital)">{{ hospital.hospitalName }}</td>
+      <td (click)="selectHospital(hospital)">{{ hospital.hospital_place }}</td>
+      <td (click)="selectHospital(hospital)">{{ hospital.hospital_type }}</td>
+      <td (click)="selectHospital(hospital)"> {{ hospital.hospital_description }}</td>
+      <td (click)="selectHospital(hospital)"> {{ hospital.hospital_address }}</td>
 
-      <td><button class="edit-btn">Edit</button></td>
-      <td><button class="delete-btn">Delete</button></td>
+      <td><button class="delete-btn" (click)="deleteHospital(hospital.id)">Delete Hospital</button></td>
 
     </tr>
 
     <!-- More table rows here -->
     </tbody>
   </table>
-  <div class="pagination">
-    <a href="#" class="active">1</a>
-    <a href="#">2</a>
-    <a href="#">3</a>
-    <!-- Add more pagination links here -->
+  <div class="pagination-container">
+    <div class="pagination">
+      <button class="pagination-btn" (click)="prevPage()" [disabled]="currentPage === 1">Previous</button>
+      <span class="pagination-info">Page {{currentPage}} of {{totalPages}}</span>
+      <button class="pagination-btn" (click)="nextPage()" [disabled]="currentPage === totalPages">Next</button>
+    </div>
   </div>
 </div>
 </div>

@@ -1,14 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import {AppointmentService} from "../../../../service/appointment/appointment.service";
-import {DoctorService} from "../../../../service/user/doctor/doctor.service";
-import {NurseService} from "../../../../service/user/nurse/nurse.service";
-import {PatientService} from "../../../../service/user/patient/patient.service";
 import {Router} from "@angular/router";
-import {Doctor} from "../../../admin/manage-doctor/manage-doctor.component";
-import {Nurses} from "../../../admin/manage-nurse-admin/manage-nurse-admin.component";
-import {Patient} from "../../../admin/manage-patient-admin/manage-patient-admin.component";
-import {Hospital} from "../../../admin/manage-hospital-admin/manage-hospital-admin.component";
 import {HospitalService} from "../../../../service/hospital/hospital.service";
+import {Appointment} from "../../../../modules/appointment";
+import {Hospital} from "../../../../modules/hospital";
+import {UserService} from "../../../../service/user/user/user.service";
+import {User} from "../../../../modules/user";
 
 @Component({
   selector: 'app-create-appointment',
@@ -19,58 +16,61 @@ export class CreateAppointmentComponent implements OnInit{
 
   appointment:Appointment[] =[];
   // تحديد قائمة الأطباء
-  doctors: Doctor[] = [];
-  nurses: Nurses[] = [];
-  patient: Patient[] = [];
   hospital: Hospital[] = [];
 
-  public doctorName:string | undefined;
-  public nursesName:string | undefined;
-  public patientName:string | undefined;
-  public hospitalName:string | undefined;
-  public appointmentNumber:string | undefined;
-  public appointmentType:string | undefined;
-  public appointmentDate:string | undefined;
-  public appointmentDescription:string | undefined;
+  doctors: User[] = [];
+  nurse: User[] = [];
+  patient: User[] = [];
+
+  filteredAppointment: Appointment[]=[];
+  searchTerm:string = '';
+
+  currentPage = 1;
+  itemsPerPage = 10;
+
+
+
+  doctorUsername: string | undefined;
+  nurseUsername: string | undefined;
+  patientUsername: string | undefined;
+  hospitalName: string | undefined;
+  appointmentNumber: string | undefined;
+  appointmentType: string | undefined;
+  appointmentDate: string | undefined;
+  appointmentDescription: string | undefined;
 
   constructor(private appointmentService:AppointmentService,
-              private doctorService: DoctorService,
-              private nursesService: NurseService,
-              private patientService: PatientService,
+              private userService:UserService,
               private hospitalService:HospitalService,
               private router:Router) {
   }
 
+  get totalPages(): number {
+    return Math.ceil(this.appointment.length / this.itemsPerPage);
+  }
+
+  prevPage():void{
+    if (this.currentPage > 1){
+      this.currentPage--;
+    }
+  }
+
+  nextPage():void{
+    if (this.currentPage < this.totalPages){
+      this.currentPage++;
+    }
+  }
+
+
+
   ngOnInit() {
-    // استدعاء خدمة الأطباء للحصول على قائمة الأطباء عند تهيئة المكون
-    this.doctorService.getDoctorAll().subscribe(
-      (data) => {
-        this.doctors = data;
-      },
-      (error) => {
-        console.error('Error fetching doctors');
-      }
-    );
-    this.nursesService.getNurseAll().subscribe(
-      (data) => {
-        this.nurses = data;
-      },
-      (error) => {
-        console.error('Error fetching nurses');
-      }
-    );
-    this.patientService.getPatientAll().subscribe(
-      (data) => {
-        this.patient = data;
-      },
-      (error) =>{
-        console.error('Error fetching patient');
-      }
-    )
+
 
     this.appointmentService.getAppointment().subscribe(
       (data) => {
-        this.appointment = data;
+        this.appointment = data.reverse();
+        this.filteredAppointment = [...this.appointment];
+        this.searchAppointment();
       },
       (error) => {
         console.error('Error fetching appointment');
@@ -80,41 +80,94 @@ export class CreateAppointmentComponent implements OnInit{
     this.hospitalService.getHospitals().subscribe(
       (data) => {
         this.hospital = data;
+
       },
       (error) => {
         console.error('Error fetching hospital')
       }
     )
+
+    this.getUserDoctor();
+    this.getUserNurse();
+    this.getUserPatient();
   }
 
+  searchAppointment():void{
+    if (!this.searchTerm) {
+      this.filteredAppointment = [...this.appointment];
+    } else {
+      this.filteredAppointment = this.appointment.filter(user =>
+        user.doctor.username.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+        user.nurse.username.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+        user.patient.username.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+        user.appointmentType.toLowerCase().includes(this.searchTerm.toLowerCase())
+
+      );
+    }
+    this.currentPage = 1; // Reset current page when search is performed
+  }
+
+  getUserDoctor():void{
+    this.userService.getAllUsers()
+      .subscribe(
+        (users:User[]) =>{
+          this.doctors = users.filter(user => user.role === 'ROLE_DOCTOR');
+        },
+        (error) => {
+          console.error('error for get doctor', error)
+        }
+      )
+  }
+
+  getUserNurse():void{
+    this.userService.getAllUsers()
+      .subscribe(
+        (users:User[]) =>{
+          this.nurse = users.filter(user => user.role === 'ROLE_NURSES');
+        },
+        (error) => {
+          console.error('error for get nurse', error)
+        }
+      )
+  }
+
+  getUserPatient():void{
+    this.userService.getAllUsers()
+      .subscribe(
+        (users:User[]) =>{
+          this.patient = users.filter(user => user.role === 'ROLE_PATIENT');
+        },
+        (error) => {
+          console.error('error for get patient', error)
+        }
+      )
+  }
+
+
   createAppointment():void{
-    this.appointmentService.createAppointment(this.doctorName,this.nursesName,this.patientName,this.hospitalName,
+    this.appointmentService.createAppointment(this.doctorUsername,this.nurseUsername,
+      this.patientUsername,this.hospitalName,
       this.appointmentNumber,this.appointmentType,
       this.appointmentDate,this.appointmentDescription).subscribe(
       {}
     );
-    this.router.navigate(['/admin-layout/create-appointment'])
+    window.location.reload();
   }
 
-}
+  deleteAppointment(appointmentId:number):void{
+    this.appointmentService.deleteAppointment(appointmentId).subscribe(
+      () => {
+        console.log(`Appointment with ID ${appointmentId} has been deleted successfully.`);
+      },
+      (error) =>{
+        console.error('An error occurred:', error);
+      }
+    )
+    window.location.reload();
+  }
 
-export interface Appointment{
-  id:number,
-  appointment_number:string,
-  appointment_type:string,
-  appointment_date:string,
-  appointment_description:string
-  doctor:{
-    doctorName:string,
-  }
-  nurses:{
-    nurseName:string,
-  }
-  patient:{
-    patientName:string
-  }
-  hospital:{
-    hospitalName:string
-  }
+
+
+
 
 }

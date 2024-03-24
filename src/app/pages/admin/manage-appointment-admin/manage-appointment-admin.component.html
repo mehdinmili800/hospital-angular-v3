@@ -2,8 +2,8 @@
 <div class="main-container">
   <div class="container">
     <div class="search-bar">
-      <input type="text" placeholder="Search...">
-      <button>Search</button>
+      <input type="text" [(ngModel)]="searchTerm" placeholder="Search..." (input)="searchAppointment()">
+      <button (click)="searchAppointment()">Search</button>
     </div>
     <table>
       <thead>
@@ -16,36 +16,36 @@
         <th>Type Appointment</th>
         <th>Date Appointment</th>
         <th>Description Appointment </th>
-        <th>Edite Hospital</th>
         <th>Delete Hospital</th>
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let appointment of appointment.slice()">
+      <tr *ngFor="let appointment of filteredAppointment.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage)">
 
-        <td>{{appointment.appointment_number}}</td>
-        <td>{{appointment.doctor.doctorName}}</td>
+        <td>{{appointment.appointmentNumber}}</td>
+        <td>{{appointment.doctor.username}}</td>
         <td>{{appointment.hospital.hospitalName}}</td>
-        <td>{{appointment.nurses.nurseName}}</td>
-        <td>{{appointment.patient.patientName}}</td>
-        <td>{{ appointment.appointment_type }}</td>
-        <td>{{ appointment.appointment_date }}</td>
-        <td> {{ appointment.appointment_description }}</td>
+        <td>{{appointment.nurse.username}}</td>
+        <td>{{appointment.patient.username}}</td>
+        <td>{{ appointment.appointmentType }}</td>
+        <td>{{ appointment.appointmentDate }}</td>
+        <td> {{ appointment.appointmentDescription }}</td>
 
-        <td><button class="edit-btn">Edit</button></td>
-        <td><button class="delete-btn">Delete</button></td>
+        <td><button class="delete-btn" (click)="deleteAppointment(appointment.id)">Delete Appointment</button></td>
 
       </tr>
 
       <!-- More table rows here -->
       </tbody>
     </table>
-    <div class="pagination">
-      <a href="#" class="active">1</a>
-      <a href="#">2</a>
-      <a href="#">3</a>
-      <!-- Add more pagination links here -->
+    <div class="pagination-container">
+      <div class="pagination">
+        <button class="pagination-btn" (click)="prevPage()" [disabled]="currentPage === 1">Previous</button>
+        <span class="pagination-info">Page {{currentPage}} of {{totalPages}}</span>
+        <button class="pagination-btn" (click)="nextPage()" [disabled]="currentPage === totalPages">Next</button>
+      </div>
     </div>
+
   </div>
 </div>
 

@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
+import {User} from "../../../modules/user";
 import {UserService} from "../../../service/user/user/user.service";
-import { Router} from "@angular/router";
-import {PatientService} from "../../../service/user/patient/patient.service";
+
 
 @Component({
   selector: 'app-manage-patient-admin',
@@ -10,56 +10,76 @@ import {PatientService} from "../../../service/user/patient/patient.service";
 })
 export class ManagePatientAdminComponent implements OnInit{
 
+  patients: User[] = [];
+  filteredPatient: User[]=[];
+  searchTerm:string = '';
 
-  patient:Patient[] = [];
-
-
-  public username: string | undefined;
-  public password: string | undefined;
-  public role: string | undefined;
-
-  constructor(private patientService:PatientService,
-              private userService: UserService,
-              private router:Router) {
+  constructor(private userService: UserService) {
   }
 
+  currentPage = 1;
+  itemsPerPage = 10;
+
+  get totalPages(): number {
+    return Math.ceil(this.patients.length / this.itemsPerPage);
+  }
   ngOnInit() {
-    this.patientService.getPatientAll().subscribe(
-      (data) => {
-        this.patient = data;
-      },
-      (error) =>{
-        console.error('Error fetching patient:', error);
-      }
-    )
+    this.getAllPatients();
   }
 
-  onDeleteUser(userId: number) {
-    if (confirm('Are you sure you want to delete this user?')) {
-      this.userService.deleteUser(userId).subscribe(
-        () => {
-          // Handle success, such as refreshing user list or removing the deleted user
-        },
-        (error) => {
-          console.error('Error deleting user:', error);
-        }
-      );
+  prevPage():void{
+    if (this.currentPage > 1){
+      this.currentPage--;
+    }
+  }
+
+  nextPage():void{
+    if (this.currentPage < this.totalPages){
+      this.currentPage++;
     }
   }
 
 
-
-}
-
-export interface Patient{
-  id:number,
-  patient:{
-    id:number,
-    username:string,
+  getAllPatients():void{
+    this.userService.getAllUsers()
+      .subscribe(
+        (users: User[]) => {
+          // فلترة قائمة المستخدمين للعثور على المرضى فقط
+          this.patients = users.reverse().filter(user => user.role === 'ROLE_PATIENT');
+          this.filteredPatient = [...this.patients];
+          this.searchPatients();
+        },
+        (error) => {
+          console.error('خطأ في جلب المرضى:', error);
+          // يمكنك التعامل مع الخطأ هنا، مثل عرض رسالة خطأ للمستخدم
+        }
+      );
   }
-  patientName:string,
-  patient_mobile:string,
-  patient_email:string,
-  patient_address:string
+
+  searchPatients(): void {
+    if (!this.searchTerm) {
+      this.filteredPatient = [...this.patients];
+    } else {
+      this.filteredPatient = this.patients.filter(user =>
+        user.username.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+        user.role.toLowerCase().includes(this.searchTerm.toLowerCase())
+      );
+    }
+    this.currentPage = 1; // Reset current page when search is performed
+  }
+
+  deleteUser(userId: number): void {
+    this.userService.deleteUser(userId).subscribe(
+      () => {
+        console.log(`User with ID ${userId} has been deleted successfully.`);
+        // Perform any additional actions after deleting the user
+      },
+      (error) => {
+        console.error('An error occurred:', error);
+      }
+
+    );
+    window.location.reload();
+  }
 
 }

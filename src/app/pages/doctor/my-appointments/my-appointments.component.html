@@ -1,41 +1,50 @@
+<!-- index.html -->
 <div class="main-container">
-
   <div class="container">
     <div class="search-bar">
-      <input type="text" placeholder="Search...">
-      <button>Search</button>
+      <input type="text" [(ngModel)]="searchTerm" placeholder="Search..." (input)="searchAppointment()">
+      <button (click)="searchAppointment()">Search</button>
     </div>
+    <table>
+      <thead>
+      <tr>
+        <th>Number Appointment</th>
+        <th>Name Doctor</th>
+        <th>Name Hospital</th>
+        <th>Name Nurses</th>
+        <th>Name Patient</th>
+        <th>Type Appointment</th>
+        <th>Date Appointment</th>
+        <th>Description Appointment </th>
 
 
-  <table>
-    <div *ngFor="let doc of doctor">
-    <thead>
-    <tr>
-      <th>Appointment Name Patient</th>
-      <th>Appointment Name Nurses</th>
-      <th>Appointment Number</th>
-      <th>Appointment Type</th>
-      <th>Appointment Date</th>
-      <th>Appointment Description</th>
-    </tr>
-    </thead>
-    <tbody>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let appointment of filteredAppointment.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage)">
+
+        <td>{{appointment.appointmentNumber}}</td>
+        <td>{{appointment.doctor.username}}</td>
+        <td>{{appointment.hospital.hospitalName}}</td>
+        <td>{{appointment.nurse.username}}</td>
+        <td>{{appointment.patient.username}}</td>
+        <td>{{ appointment.appointmentType }}</td>
+        <td>{{ appointment.appointmentDate }}</td>
+        <td> {{ appointment.appointmentDescription }}</td>
 
 
-      <tr *ngFor="let appointment of doc.appointments">
-        <td>{{appointment.patient.patientName}}</td>
-        <td>{{appointment.nurses.nurseName}}</td>
-        <td>{{appointment.appointment_number}}</td>
-        <td>{{appointment.appointment_type}}</td>
-        <td>{{appointment.appointment_date}}</td>
-        <td>{{appointment.appointment_description}}</td>
       </tr>
 
-
-    </tbody>
-
+      <!-- More table rows here -->
+      </tbody>
+    </table>
+    <div class="pagination-container">
+      <div class="pagination">
+        <button class="pagination-btn" (click)="prevPage()" [disabled]="currentPage === 1">Previous</button>
+        <span class="pagination-info">Page {{currentPage}} of {{totalPages}}</span>
+        <button class="pagination-btn" (click)="nextPage()" [disabled]="currentPage === totalPages">Next</button>
+      </div>
     </div>
-  </table>
-
   </div>
 </div>
+

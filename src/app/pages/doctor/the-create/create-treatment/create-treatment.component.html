@@ -4,27 +4,41 @@
     <div class="create-hospital">
       <h2>Create Treatment</h2>
       <form id="createForm" (ngSubmit)="createTreatment()">
+
+
         <div class="form-group">
-          <label for="doctorName">Name Doctor:</label>
-          <!-- عرض قائمة الأطباء -->
-          <select id="doctorName" name="doctorName" required [(ngModel)]="doctorName">
-            <option *ngFor="let doctor of doctors" [value]="doctor.doctorName">{{ doctor.doctorName }}</option>
+          <label for="doctorUsername">UserName Doctor</label>
+          <select id="doctorUsername" name="doctorUsername" required [(ngModel)]="doctorUsername">
+            <option *ngFor="let doctor of doctors"
+                    [value]="doctor.username">{{doctor.username}}</option>
           </select>
         </div>
 
         <div class="form-group">
-          <label for="patientName">Name Patient</label>
-          <select id="patientName" name="patientName" required [(ngModel)]="patientName">
-            <option *ngFor="let patient of patient" [value]="patient.patientName">{{patient.patientName}}</option>
+          <label for="nurseUsername">UserName Nurse</label>
+          <select id="nurseUsername" name="nurseUsername" required [(ngModel)]="nurseUsername">
+            <option *ngFor="let nurse of nurse"
+                    [value]="nurse.username">{{nurse.username}}</option>
           </select>
         </div>
+
+        <div class="form-group">
+          <label for="patientUsername">UserName Patient</label>
+          <select id="patientUsername" name="patientUsername" required [(ngModel)]="patientUsername">
+            <option *ngFor="let patient of patient"
+                    [value]="patient.username">{{patient.username}}</option>
+          </select>
+        </div>
+
+
 
         <div class="form-group">
           <label for="medicineName">Name Medicines</label>
-          <select id="medicineName" name="medicineName" required [(ngModel)]="medicineName">
+          <select id="medicineName" name="medicineName" required [(ngModel)]="medicinesName">
             <option *ngFor="let medicine of medicine" [value]="medicine.medicineName">{{medicine.medicineName}}</option>
           </select>
         </div>
+
 
         <div class="form-group">
           <label for="treatmentName">Treatment Name:</label>
@@ -63,14 +77,15 @@
 
   <div class="container">
     <div class="search-bar">
-      <input type="text" placeholder="Search...">
-      <button>Search</button>
+      <input type="text" [(ngModel)]="searchTerm" placeholder="Search..." (input)="searchTreatment()">
+      <button (click)="searchTreatment()">Search</button>
     </div>
     <table>
       <thead>
       <tr>
         <th>Doctor Name</th>
         <th>Patient Name</th>
+        <th>Nurse Name</th>
         <th>Medicine Name</th>
         <th>Treatment Name</th>
         <th>Treatment Number</th>
@@ -78,15 +93,15 @@
         <th>Treatment Date</th>
         <th>Treatment Description</th>
 
-        <th>Edite Hospital</th>
         <th>Delete Hospital</th>
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let treatment of treatment.slice()">
+      <tr *ngFor="let treatment of filteredTreatment.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage)">
 
-        <td>{{treatment.doctor.doctorName}}</td>
-        <td>{{treatment.patient.patientName}}</td>
+        <td>{{treatment.doctor.username}}</td>
+        <td>{{treatment.patient.username}}</td>
+        <td>{{treatment.nurse.username}}</td>
         <td>{{treatment.medicines.medicineName}}</td>
         <td>{{treatment.treatmentName}}</td>
         <td>{{treatment.treatmentNumber}}</td>
@@ -94,19 +109,19 @@
         <td>{{ treatment.treatmentDate}}</td>
         <td> {{ treatment.treatmentDescription }}</td>
 
-        <td><button class="edit-btn">Edit</button></td>
-        <td><button class="delete-btn">Delete</button></td>
+        <td><button class="delete-btn" (click)="deleteTreatment(treatment.id)">Delete User</button></td>
 
       </tr>
 
       <!-- More table rows here -->
       </tbody>
     </table>
-    <div class="pagination">
-      <a href="#" class="active">1</a>
-      <a href="#">2</a>
-      <a href="#">3</a>
-      <!-- Add more pagination links here -->
+    <div class="pagination-container">
+      <div class="pagination">
+        <button class="pagination-btn" (click)="prevPage()" [disabled]="currentPage === 1">Previous</button>
+        <span class="pagination-info">Page {{currentPage}} of {{totalPages}}</span>
+        <button class="pagination-btn" (click)="nextPage()" [disabled]="currentPage === totalPages">Next</button>
+      </div>
     </div>
   </div>
 </div>

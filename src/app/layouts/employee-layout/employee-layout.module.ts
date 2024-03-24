@@ -7,9 +7,7 @@ import {
   CreateAppointmentComponent
 } from "../../pages/employee/work-hospital/create-appointment/create-appointment.component";
 import {CreatePatientComponent} from "../../pages/employee/work-hospital/create-patient/create-patient.component";
-import {
-  CreateProfilePatientComponent
-} from "../../pages/employee/work-hospital/create-patient/create-profile-patient/create-profile-patient.component";
+
 
 
 
@@ -17,7 +15,6 @@ import {
   declarations: [
     CreateAppointmentComponent,
     CreatePatientComponent,
-    CreateProfilePatientComponent,
 
   ],
   imports: [

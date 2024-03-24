@@ -9,9 +9,8 @@ import {EmployeeService} from "../../../service/user/employee/employee.service";
   templateUrl: './manage-employee.component.html',
   styleUrls: ['./manage-employee.component.css']
 })
-export class ManageEmployeeComponent implements OnInit{
+export class ManageEmployeeComponent{
 
-  employee:Employee[] = [];
 
   public username:string | undefined;
   public password:string | undefined;
@@ -22,35 +21,19 @@ export class ManageEmployeeComponent implements OnInit{
               private router:Router) {
   }
 
-  ngOnInit() {
-    this.employeeService.getEmployeeAll().subscribe(
-      (data) => {
-        this.employee = data;
-      },
-      (error) =>{
-        console.error('Error fetching employee');
-      }
-    )
-  }
+
 
   createUser():void{
     this.userService.createUser(this.username,this.password,this.role).subscribe(
       () => {
         if (this.role === 'ROLE_EMPLOYEE'){
-          this.router.navigate(['/admin-layout/form-second-employee'],
+          this.router.navigate(['/admin-layout/manage-employee'],
             {queryParams:{username:this.username}});
         }
       }
     )
+    window.location.reload();
   }
 }
 
-export interface Employee{
-  id:number,
-  employee:{
-    username:string,
-  },
-  employeeName:string,
-  email:string,
-  phone:string,
-}
+

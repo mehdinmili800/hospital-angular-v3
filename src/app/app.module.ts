@@ -17,7 +17,14 @@ import {EmployeeLayoutComponent} from "./layouts/employee-layout/employee-layout
 
 import {ComponentsEmployeeModule} from "./components/components-employee/components-employee.module";
 import {EmployeeLayoutModule} from "./layouts/employee-layout/employee-layout.module";
-import { ManageTreatmentAdminComponent } from './pages/admin/manage-treatment-admin/manage-treatment-admin.component';
+import { PatientLayoutComponent } from './layouts/patient-layout/patient-layout.component';
+
+import {ComponentsPatientModule} from "./components/components-patient/components-patient.module";
+import {PatientLayoutModule} from "./layouts/patient-layout/patient-layout.module";
+import { NurseLayoutComponent } from './layouts/nurse-layout/nurse-layout.component';
+import {ComponentsNurseModule} from "./components/components-nurse/components-nurse.module";
+import { HospitalInfoComponent } from './pages/hospital-info/hospital-info.component';
+
 
 
 @NgModule({
@@ -27,6 +34,9 @@ import { ManageTreatmentAdminComponent } from './pages/admin/manage-treatment-ad
     AuthComponent,
     DoctorLayoutComponent,
     EmployeeLayoutComponent,
+    PatientLayoutComponent,
+    NurseLayoutComponent,
+    HospitalInfoComponent,
 
   ],
   imports: [
@@ -39,7 +49,10 @@ import { ManageTreatmentAdminComponent } from './pages/admin/manage-treatment-ad
     AdminLayoutModule,
     ComponentsDoctorModule,
     EmployeeLayoutModule,
-    ComponentsEmployeeModule
+    ComponentsEmployeeModule,
+    ComponentsPatientModule,
+    PatientLayoutModule,
+    ComponentsNurseModule
   ],
   providers: [
     {

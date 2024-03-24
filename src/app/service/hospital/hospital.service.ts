@@ -23,4 +23,8 @@ export class HospitalService {
   getHospitals(): Observable<any>{
     return this.http.get<any>(`${this.apiUrl}/hospitals/all`)
   }
+
+  deleteHospital(hospitalId:number):Observable<any>{
+    return this.http.delete<any>(`${this.apiUrl}/hospital/${hospitalId}`)
+  }
 }

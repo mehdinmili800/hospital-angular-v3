@@ -19,7 +19,6 @@ body {
   background-color: #fff;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
-
 }
 
 .search-bar {
@@ -67,24 +66,7 @@ th {
   background-color: #e74c3c;
 }
 
-.pagination {
-  margin-top: 20px;
-}
 
-.pagination a {
-  display: inline-block;
-  padding: 10px 15px;
-  margin-right: 5px;
-  text-decoration: none;
-  color: #333;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-.pagination a.active {
-  background-color: #3498db;
-  color: #fff;
-}
 .create-hospital {
   display: flex;
   flex-direction: column; /* يجعل العناصر تظهر في عمود واحد */
@@ -116,3 +98,46 @@ button {
   cursor: pointer;
   width: 100%; /* يمتد الزر إلى 100% من العرض */
 }
+
+
+.pagination-container {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.pagination {
+  display: flex;
+  align-items: center;
+}
+
+.pagination-btn {
+  padding: 8px 15px;
+  border: none;
+  background-color: #4CAF50;
+  color: #fff;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-size: 14px;
+  width: 150px;
+}
+
+.prev-btn {
+  margin-right: 10px;
+}
+
+.next-btn {
+  margin-left: 10px;
+}
+
+.pagination-btn:hover {
+  background-color: #0056b3;
+}
+
+.pagination-info {
+  padding: 8px 15px;
+  font-size: 16px;
+  color: #333;
+}
+
+

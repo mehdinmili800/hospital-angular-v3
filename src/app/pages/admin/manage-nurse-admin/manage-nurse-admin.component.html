@@ -20,46 +20,5 @@
     </form>
   </div>
 
-  <div class="container1">
-    <div class="search-bar">
-      <input type="text" placeholder="Search...">
-      <button>Search</button>
-    </div>
-    <table>
-      <thead>
-      <tr>
-        <th>User Name Nurses</th>
-        <th>Name Nurses</th>
-        <th>Name Duty Hour</th>
-        <th>Mobile Nurses</th>
-        <th>Email Nurses </th>
-        <th>Address Nurses </th>
-        <th>Edite Nurses</th>
-        <th>Delete Nurses</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr *ngFor="let nurses of nurses.slice()">
-        <td>{{nurses.nurses.username}}</td>
-        <td>{{ nurses.nurseName }}</td>
-        <td>{{ nurses.nurse_duty_hour }}</td>
-        <td> {{ nurses.nurse_mobile }}</td>
-        <td> {{ nurses.nurse_email }}</td>
-        <td> {{ nurses.nurse_address }}</td>
 
-        <td><button class="edit-btn">Edit</button></td>
-        <td><button class="delete-btn">Delete</button></td>
-
-      </tr>
-
-      <!-- More table rows here -->
-      </tbody>
-    </table>
-    <div class="pagination">
-      <a href="#" class="active">1</a>
-      <a href="#">2</a>
-      <a href="#">3</a>
-      <!-- Add more pagination links here -->
-    </div>
-  </div>
 </div>

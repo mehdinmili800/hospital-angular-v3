@@ -11,18 +11,12 @@ import {
 } from "../../pages/admin/manage-appointment-admin/manage-appointment-admin.component";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
-import {
-  FormSecondDoctorComponent
-} from "../../pages/admin/manage-doctor/form-second-doctor/form-second-doctor.component";
-import {
-  FormSecondNursesComponent
-} from "../../pages/admin/manage-nurse-admin/form-second-nurses/form-second-nurses.component";
+
 import {ManageMedicinesAdminComponent} from "../../pages/admin/manage-medicines-admin/manage-medicines-admin.component";
 import {ManageEmployeeComponent} from "../../pages/admin/manage-employee/manage-employee.component";
-import {
-  FormSecondEmloyeeComponent
-} from "../../pages/admin/manage-employee/form-second-emloyee/form-second-emloyee.component";
+
 import {ManageTreatmentAdminComponent} from "../../pages/admin/manage-treatment-admin/manage-treatment-admin.component";
+import {ManageAllUsersComponent} from "../../pages/admin/manage-all-users/manage-all-users.component";
 
 
 
@@ -34,11 +28,10 @@ import {ManageTreatmentAdminComponent} from "../../pages/admin/manage-treatment-
     ManageNurseAdminComponent,
     ManageAppointmentAdminComponent,
     ManageMedicinesAdminComponent,
-    FormSecondDoctorComponent,
-    FormSecondNursesComponent,
     ManageEmployeeComponent,
-    FormSecondEmloyeeComponent,
-    ManageTreatmentAdminComponent
+    ManageTreatmentAdminComponent,
+    ManageAllUsersComponent,
+
 
   ],
     imports: [

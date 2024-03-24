@@ -4,6 +4,9 @@ import {AdminLayoutComponent} from "./layouts/admin-layout/admin-layout.componen
 import {AuthComponent} from "./pages/auth/auth.component";
 import {DoctorLayoutComponent} from "./layouts/doctor-layout/doctor-layout.component";
 import {EmployeeLayoutComponent} from "./layouts/employee-layout/employee-layout.component";
+import {PatientLayoutComponent} from "./layouts/patient-layout/patient-layout.component";
+import {NurseLayoutComponent} from "./layouts/nurse-layout/nurse-layout.component";
+import {HospitalInfoComponent} from "./pages/hospital-info/hospital-info.component";
 
 const routes: Routes = [
 
@@ -11,6 +14,9 @@ const routes: Routes = [
     path:'',
     redirectTo:'auth',
     pathMatch:'full',
+  },
+  {
+    path:'hospital-info',component:HospitalInfoComponent
   },
   {
     path:'auth',component:AuthComponent
@@ -39,6 +45,22 @@ const routes: Routes = [
     children:[{
       path:'',
       loadChildren: () => import('./layouts/employee-layout/employee-layout.module').then(m => m.EmployeeLayoutModule)
+    }]
+  },
+  {
+    path:'patient-layout',
+    component:PatientLayoutComponent,
+    children:[{
+      path:'',
+      loadChildren: () => import('./layouts/patient-layout/patient-layout.module').then(m => m.PatientLayoutModule)
+    }]
+  },
+  {
+    path:'nurse-layout',
+    component:NurseLayoutComponent,
+    children:[{
+      path:'',
+      loadChildren: () => import('./layouts/nurse-layout/nurse-layout.module').then(m => m.NurseLayoutModule)
     }]
   },
 

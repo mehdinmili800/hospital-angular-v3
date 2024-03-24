@@ -26,6 +26,10 @@ export class UserService {
     return this.http.get<any>(`${this.apiUrl}/user/${userId}`);
   }
 
+  getAllUsers(): Observable<any>{
+    return this.http.get(`${this.apiUrl}/user/all`);
+  }
+
 
   deleteUser(userId: number): Observable<any> {
     return this.http.delete<any>(`${this.apiUrl}/user/${userId}`);

@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {UserService} from "../../../service/user/user/user.service";
-import {PatientService} from "../../../service/user/patient/patient.service";
-import {NurseService} from "../../../service/user/nurse/nurse.service";
+
 import {Router} from "@angular/router";
 
 @Component({
@@ -9,9 +8,8 @@ import {Router} from "@angular/router";
   templateUrl: './manage-nurse-admin.component.html',
   styleUrls: ['./manage-nurse-admin.component.css']
 })
-export class ManageNurseAdminComponent implements OnInit{
+export class ManageNurseAdminComponent{
 
-  nurses:Nurses[] = [];
 
 
 
@@ -20,42 +18,22 @@ export class ManageNurseAdminComponent implements OnInit{
   public role: string | undefined;
 
   constructor(private userService: UserService,
-              private nurseService:NurseService,
               private router:Router) {
   }
 
-  ngOnInit() {
-    this.nurseService.getNurseAll().subscribe(
-      (data) => {
-        this.nurses = data;
-      },
-      (error) =>{
-        console.error('Error fetching patient:', error)
-      }
-    )
-  }
+
 
   createUser():void {
     this.userService.createUser(this.username,this.password,this.role).subscribe(
       () => {
         if (this.role === 'ROLE_NURSES'){
-          this.router.navigate(['/admin-layout/form-second-nurses'],
+          this.router.navigate(['/admin-layout/manage-nurse-admin'],
             {queryParams:{username: this.username}});
         }
       }
     )
+    window.location.reload();
   }
 }
 
-export interface Nurses {
-  id: number,
-  nurses: {
-    id: number,
-    username: string,
-  }
-  nurseName: string,
-  nurse_duty_hour: string,
-  nurse_mobile: string,
-  nurse_email: string,
-  nurse_address:string,
-}
+
