@@ -8,7 +8,7 @@ import {TokenStorageService} from "../../../token/TokenStorageService";
 })
 export class UserService {
 
-  private apiUrl = 'http://localhost:8080/api'
+  private apiUrl = 'https://hospital-api-springboot-583db87e37f7.herokuapp.com/api'
 
   constructor(private http:HttpClient,private tokenStorageService:TokenStorageService) { }
 

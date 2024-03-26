@@ -7,7 +7,7 @@ import {Observable} from "rxjs";
 })
 export class TreatmentService {
 
-  private apiUrl = 'http://localhost:8080/api'
+  private apiUrl = 'https://hospital-api-springboot-583db87e37f7.herokuapp.com/api'
   constructor(private http:HttpClient) { }
 
   createTreatment(doctorUsername:string | undefined,

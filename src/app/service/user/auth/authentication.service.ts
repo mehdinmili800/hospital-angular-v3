@@ -9,7 +9,7 @@ import {Router} from "@angular/router";
 })
 export class AuthenticationService {
 
-  private apiUrl = 'http://localhost:8080/api/auth'; // Update with your API URL
+  private apiUrl = 'https://hospital-api-springboot-583db87e37f7.herokuapp.com/api/auth'; // Update with your API URL
   private userId: number | undefined;
 
   constructor(
