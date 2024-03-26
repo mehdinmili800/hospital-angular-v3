@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "node serveur.js",
+    "start": "ng serveur.js",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
@@ -41,7 +41,7 @@
     "typescript": "~5.0.2"
   },
   "engines": {
-    "node": "10.4.0",
-    "npm": "v21.6.2"
+    "node": "21.6.2",
+    "npm": "10.4.0"
   }
 }
